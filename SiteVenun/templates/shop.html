@@ -1,0 +1,68 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Loja PW II | Shop{% endblock %}
+
+{% block wrapper %}
+
+<div id="wrapper" class="clearfix">
+    {% include 'core/header.html' %}
+
+    <section id="content">
+        <div class="content-wrap">
+            <div class="container clearfix">
+
+                <!-- Shop -->
+                <div id="shop" class="shop row grid-container gutter-30" data-layout="fitRows">
+
+                    {% for produto in products %}
+                    <div class="product col-lg-3 col-md-4 col-sm-6 col-12">
+                        <div class="grid-inner">
+                            <div class="product-image">
+                                <a href="{{ url_for('shop_single', product_id=produto.product_id) }}">
+                                    <img src="{{ url_for('static', filename=produto.imagem_one) }}" alt="{{ produto.nome }}">
+                                </a>
+                                <a href="{{ url_for('shop_single', product_id=produto.product_id) }}">
+                                    <img src="{{ url_for('static', filename=produto.imagem_two) }}" alt="{{ produto.nome }}">
+                                </a>
+                                <div class="bg-overlay">
+                                    <div class="bg-overlay-content align-items-end justify-content-between"
+                                         data-hover-animate="fadeIn" data-hover-speed="400">
+                                        <a href="{{ url_for('shop_single', product_id=produto.product_id) }}" class="btn btn-dark me-2">
+                                            <i class="icon-shopping-basket"></i>
+                                        </a>
+                                        <a href="{{ url_for('shop_single', product_id=produto.product_id) }}" class="btn btn-dark">
+                                            <i class="icon-line-expand"></i>
+                                        </a>
+                                    </div>
+                                    <div class="bg-overlay-bg bg-transparent"></div>
+                                </div>
+                            </div>
+                            <div class="product-desc">
+                                <div class="product-title">
+                                    <h3><a href="{{ url_for('shop_single', product_id=produto.product_id) }}">{{ produto.nome }}</a></h3>
+                                </div>
+                                <div class="product-price">
+                                    <ins>€{{ produto.preco }}</ins>
+                                </div>
+                                <div class="product-rating">
+                                    <i class="icon-star3"></i>
+                                    <i class="icon-star3"></i>
+                                    <i class="icon-star3"></i>
+                                    <i class="icon-star3"></i>
+                                    <i class="icon-star-half-full"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+
+                </div><!-- #shop end -->
+
+            </div>
+        </div>
+    </section><!-- #content end -->
+
+    {% include 'core/footer.html' %}
+</div><!-- #wrapper end -->
+
+{% endblock %}

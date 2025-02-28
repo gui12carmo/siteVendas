@@ -1,0 +1,161 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Loja PW II | Produto{% endblock %}
+
+{% block wrapper %}
+
+<div id="wrapper" class="clearfix">
+
+    {% include 'core/header.html' %}
+
+    <section id="content">
+        <div class="content-wrap">
+            <div class="container clearfix">
+                <!-- Produto Principal -->
+                <div class="single-product">
+                    <div class="product">
+                        <div class="row gutter-40">
+                            <!-- Galeria de Imagens -->
+                            <div class="col-md-5">
+                                <div class="product-image">
+                                    <div class="fslider" data-pagi="false" data-arrows="false" data-thumbs="true">
+                                        <div class="flexslider">
+                                            <div class="slider-wrap" data-lightbox="gallery">
+                                                <div class="slide" data-thumb="{{ url_for('static', filename=product.imagem_one) }}">
+                                                    <a href="{{ url_for('static', filename=product.imagem_one) }}" 
+                                                       title="{{ product.nome }} - Front View" 
+                                                       data-lightbox="gallery-item">
+                                                        <img src="{{ url_for('static', filename=product.imagem_two) }}" 
+                                                             alt="{{ product.nome }}">
+                                                    </a>
+                                                </div>
+                                                <!-- Repita este bloco para outras imagens, se houver -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Informações do Produto -->
+                            <div class="col-md-5 product-desc">
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <div class="product-price">
+                                        <ins>€{{ product.preco }}</ins>
+                                    </div>
+                                    <div class="product-rating">
+                                        <i class="icon-star3"></i>
+                                        <i class="icon-star3"></i>
+                                        <i class="icon-star3"></i>
+                                        <i class="icon-star-half-full"></i>
+                                        <i class="icon-star-empty"></i>
+                                    </div>
+                                </div>
+
+                                <div class="line"></div>
+
+                                <!-- Formulário de Compra -->
+                                <form class="cart mb-0 d-flex justify-content-between align-items-center" 
+                                      method="post" 
+                                      action="{{ url_for('add_to_cart') }}" 
+                                      enctype="multipart/form-data">
+                                    <!-- Campo oculto para enviar o ID do produto -->
+                                    <input type="hidden" name="product_id" value="{{ product.product_id }}">
+                                    
+                                    <div class="quantity clearfix">
+                                        <button type="button" class="minus">-</button>
+                                        <input type="number" 
+                                               step="1" 
+                                               min="1" 
+                                               name="quantity" 
+                                               value="1" 
+                                               title="Qty" 
+                                               class="qty">
+                                        <button type="button" class="plus">+</button>
+                                    </div>
+                                    <button type="submit" class="add-to-cart button m-0">
+                                        Adicionar ao Carrinho
+                                    </button>
+                                </form>
+
+                                <div class="line"></div>
+
+                                <!-- Descrição -->
+                                <p>{{ product.descricao }}.</p>
+
+                                <!-- Compartilhamento -->
+                                <div class="si-share border-0 d-flex justify-content-between align-items-center mt-4">
+                                    <span>Compartilhar:</span>
+                                    <div>
+                                        <a href="#" class="social-icon si-borderless si-facebook">
+                                            <i class="bi bi-facebook"></i>
+                                        </a>
+                                        <a href="#" class="social-icon si-borderless si-instagram">
+                                            <i class="bi bi-instagram"></i>
+                                        </a>
+                                        <a href="#" class="social-icon si-borderless si-whatsapp">
+                                            <i class="bi bi-whatsapp"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Informações da Loja -->
+                            <div class="col-md-2">
+                                <img src="{{ url_for('static', filename='images/logo.png') }}" 
+                                     alt="Logo da Loja" 
+                                     class="d-none d-md-block mb-4">
+
+                                <div class="divider divider-center"><i class="icon-circle-blank"></i></div>
+
+                                <!-- Benefícios -->
+                                <div class="feature-box fbox-plain fbox-dark fbox-sm">
+                                    <div class="fbox-icon">
+                                        <i class="icon-truck2"></i>
+                                    </div>
+                                    <div class="fbox-content fbox-content-sm">
+                                        <h3>Frete Grátis</h3>
+                                        <p class="mt-0">Para compras acima de R$ 200</p>
+                                    </div>
+                                </div>
+                                <!-- Outros benefícios... -->
+                            </div>
+                        </div>
+
+                        <!-- Tabs de Detalhes -->
+                        <div class="col-12 mt-5">
+                            <div class="tabs clearfix mb-0" id="tab-1">
+                                <ul class="tab-nav clearfix">
+                                    <li><a href="#tabs-1"><i class="icon-align-justify2"></i> Descrição</a></li>
+                                    <li><a href="#tabs-2"><i class="icon-info-sign"></i> Detalhes</a></li>
+                                    <li><a href="#tabs-3"><i class="icon-star3"></i> Avaliações (2)</a></li>
+                                </ul>
+
+                                <div class="tab-container">
+                                    <!-- Conteúdo das tabs... -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {% include 'core/footer.html' %}
+</div>
+
+<!-- Estilos Adicionais -->
+<style>
+.product-image .fslider {
+    border: 1px solid #eee;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.quantity input.qty {
+    width: 50px;
+    text-align: center;
+    border: 1px solid #ddd;
+}
+</style>
+{% endblock %}

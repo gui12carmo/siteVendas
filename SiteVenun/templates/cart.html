@@ -1,0 +1,120 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Loja PW II | Cart{% endblock %}
+
+{% block wrapper %}
+<div id="wrapper">
+    {% include 'core/header.html' %}
+
+    <section id="content">
+        <div class="content-wrap">
+            <div class="container">
+                <h2>Carrinho de Compras</h2>
+                {% if cart_items %}
+                <table class="table cart mb-5">
+                    <thead>
+                        <tr>
+                            <th class="cart-product-remove">&nbsp;</th>
+                            <th class="cart-product-thumbnail">&nbsp;</th>
+                            <th class="cart-product-name">Produto</th>
+                            <th class="cart-product-price">Preço Unitário</th>
+                            <th class="cart-product-quantity">Quantidade</th>
+                            <th class="cart-product-subtotal">Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in cart_items %}
+                        <tr class="cart_item">
+                            <td class="cart-product-remove">
+                                <!-- Rota para remover o item, caso você a implemente -->
+                                <a href="{{ url_for('remove_from_cart', product_id=item.product.product_id) }}" class="remove" title="Remover este item">
+                                    <i class="icon-trash2"></i>
+                                </a>
+                            </td>
+
+                            <td class="cart-product-thumbnail">
+                                <a href="{{ url_for('shop_single', product_id=item.product.product_id) }}">
+                                    <img width="64" height="64" src="{{ url_for('static', filename=item.product.imagem_one) }}" alt="{{ item.product.nome }}">
+                                </a>
+                            </td>
+
+                            <td class="cart-product-name">
+                                <a href="{{ url_for('shop_single', product_id=item.product.product_id) }}">{{ item.product.nome }}</a>
+                            </td>
+
+                            <td class="cart-product-price">
+                                <span class="amount">€{{ item.product.preco }}</span>
+                            </td>
+
+                            <td class="cart-product-quantity">
+                                <div class="quantity">
+                                    <input type="button" value="-" class="minus">
+                                    <input type="text" name="quantity" value="{{ item.quantity }}" class="qty">
+                                    <input type="button" value="+" class="plus">
+                                </div>
+                            </td>
+
+                            <td class="cart-product-subtotal">
+                                <span class="amount">€{{ item.product.preco * item.quantity }}</span>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+
+                <div class="row col-mb-30">
+                    <div class="col-lg-6">
+                        <h4>Calculate Shipping</h4>
+                        <form class="row">
+                            <div class="col-12 form-group">
+                                <select class="sm-form-control">
+                                    <option value="AX">&#197;land Islands</option>
+                                    <!-- Outras opções -->
+                                    <option value="GB" selected='selected'>United Kingdom (UK)</option>
+                                    <option value="US">United States (US)</option>
+                                </select>
+                            </div>
+                            <div class="col-6 form-group">
+                                <input type="text" class="sm-form-control" placeholder="State / Country">
+                            </div>
+                            <div class="col-6 form-group">
+                                <input type="text" class="sm-form-control" placeholder="PostCode / Zip">
+                            </div>
+                            <div class="col-12 form-group">
+                                <button class="button button-3d m-0 button-black">Update Totals</button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <h4>Cart Totals</h4>
+                        <div class="table-responsive">
+                            <table class="table cart cart-totals">
+                                <tbody>
+                                    <tr class="cart_item">
+                                        <td class="cart-product-name"><strong>Cart Subtotal</strong></td>
+                                        <td class="cart-product-name"><span class="amount">€{{ total }}</span></td>
+                                    </tr>
+                                    <tr class="cart_item">
+                                        <td class="cart-product-name"><strong>Shipping</strong></td>
+                                        <td class="cart-product-name"><span class="amount">Free Delivery</span></td>
+                                    </tr>
+                                    <tr class="cart_item">
+                                        <td class="cart-product-name"><strong>Total</strong></td>
+                                        <td class="cart-product-name"><span class="amount color lead"><strong>€{{ total }}</strong></span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                {% else %}
+                <p>Seu carrinho está vazio.</p>
+                {% endif %}
+            </div>
+        </div>
+    </section><!-- #content end -->
+
+    {% include 'core/footer.html' %}
+</div><!-- #wrapper end -->
+{% endblock %}
