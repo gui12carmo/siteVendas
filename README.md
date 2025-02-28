@@ -5,16 +5,16 @@
 ![HTML](https://img.shields.io/badge/HTML-%23E34F26.svg?logo=html5&logoColor=white)
 ![GitHub](https://img.shields.io/badge/GitHub-%23121011.svg?logo=github&logoColor=white)
 
-- Button: para interações e acionamento de eventos;
-- TextInputEditText e TextInputLayout: para entrada e validação de dados;
-- Intent: para a navegação entre diferentes telas da aplicação;
-- TextView: para a exibição de informações textuais;
-- ConstraintLayout e LinearLayout: para estruturar e organizar a interface de forma responsiva;
-- ImageView: para a apresentação de imagens, enriquecendo a experiência visual.
+-Flask -- Microframework Python responsável pela criação e gerenciamento das rotas, sessões e lógica de back-end.
+
+-SQLAlchemy -- ORM que facilita a interação com o banco de dados, garantindo integridade e escalabilidade dos dados.
+
+-HTML5 & CSS3 -- Linguagens fundamentais para estruturar e estilizar a interface, proporcionando uma experiência visual moderna e responsiva.
+
+-JavaScript -- Adiciona interatividade e dinamismo à aplicação, melhorando a usabilidade e a experiência do usuário.
 
 ## :camera_flash: Screenshots
 <!-- You can add more screenshots here if you like -->
-
 
 ## Como rodar o projeto
 
