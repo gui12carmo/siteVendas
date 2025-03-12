@@ -13,9 +13,6 @@
 
 -JavaScript -- Adiciona interatividade e dinamismo à aplicação, melhorando a usabilidade e a experiência do usuário.
 
-## :camera_flash: Screenshots
-<!-- You can add more screenshots here if you like -->
-
 ## Como rodar o projeto
 
 ### 1️⃣ Abrir o terminal e navegar até a pasta do projeto  
